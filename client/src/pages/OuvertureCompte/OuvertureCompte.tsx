@@ -1,44 +1,66 @@
-import React from "react";
-import { useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 import {
-  OuvertureData,
-  SocieteData,
-  BanqueData,
-} from "../../../../common/types/OuvertureData";
-import {
-  PartiesSociete,
   PartiesBanque,
-  PartiesTva,
   PartiesDocuments,
+  PartiesSociete,
+  PartiesTva,
   PartiesUtilisateurs,
 } from "./PartiesFormulaire/PartiesFormulaire";
 
-export default function OuvertureCompte() {
-  //form data state
-  const [ouvertureForm, setOuvertureForm] = useState<OuvertureData>(
-    {} as OuvertureData
-  );
+import "./OuvertureCompte.css";
 
-  //functions
-  const handlePartChange = (
-    partName: string,
-    partData: SocieteData | BanqueData
-  ) => {
-    setOuvertureForm({
-      ...ouvertureForm,
-      [partName]: partData,
-    });
+export default function OuvertureCompte() {
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const banqueArray = useFieldArray({
+    control, // control props comes from useForm (optional: if you are using FormContext)
+    name: "relation_bancaire", // unique name for your Field Array
+  });
+
+  const utilisateurArray = useFieldArray({
+    control, // control props comes from useForm (optional: if you are using FormContext)
+    name: "utilisateurs", // unique name for your Field Array
+  });
+
+  const onSubmit = (data: any) => {
+    console.log(data, errors);
   };
 
   return (
     <div className="page-ouverture">
       <div className="form-progress"></div>
-      <form action="">
-        <PartiesSociete />
-        <PartiesBanque />
-        <PartiesTva />
-        <PartiesUtilisateurs />
-        <PartiesDocuments />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <PartiesSociete register={register} errors={errors} />
+        </div>
+        <div>
+          <PartiesBanque
+            register={register}
+            errors={errors}
+            formArray={banqueArray}
+          />
+        </div>
+        <div>
+          <PartiesTva register={register} errors={errors} watch={watch} />
+        </div>
+        <div>
+          <PartiesUtilisateurs
+            register={register}
+            errors={errors}
+            formArray={utilisateurArray}
+          />
+        </div>
+        <div>
+          <PartiesDocuments register={register} errors={errors} />
+        </div>
+
+        <input type="submit" />
       </form>
     </div>
   );
