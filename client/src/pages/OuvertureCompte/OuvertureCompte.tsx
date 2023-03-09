@@ -8,8 +8,12 @@ import {
 } from "./PartiesFormulaire/PartiesFormulaire";
 
 import "./OuvertureCompte.css";
+import { useState } from "react";
 
 export default function OuvertureCompte() {
+  const path = window.location.pathname;
+  const [partie, setPartie] = useState("societe");
+
   const {
     control,
     register,
@@ -28,38 +32,60 @@ export default function OuvertureCompte() {
     name: "utilisateurs", // unique name for your Field Array
   });
 
+  const documentArray = useFieldArray({
+    control,
+    name: "documents_joint",
+  });
+
   const onSubmit = (data: any) => {
     console.log(data, errors);
   };
 
   return (
     <div className="page-ouverture">
-      <div className="form-progress"></div>
+      <div className="form-progress">
+        {["societe", "banque", "tva", "utilisateur", "document"].map(
+          (elem: string, index: number) => (
+            <div key={index} onClick={() => setPartie(elem)}>
+              <p>{elem.toUpperCase()}</p>
+              <div className={partie == elem ? "selected" : ""}></div>
+            </div>
+          )
+        )}
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div hidden={partie !== "societe"}>
           <PartiesSociete register={register} errors={errors} />
         </div>
-        <div>
+
+        <div hidden={partie !== "banque"}>
           <PartiesBanque
             register={register}
             errors={errors}
-            formArray={banqueArray}
+            fieldArray={banqueArray}
           />
         </div>
-        <div>
+
+        <div hidden={partie !== "tva"}>
           <PartiesTva register={register} errors={errors} watch={watch} />
         </div>
-        <div>
+
+        <div hidden={partie !== "utilisateur"}>
           <PartiesUtilisateurs
             register={register}
             errors={errors}
-            formArray={utilisateurArray}
+            fieldArray={utilisateurArray}
           />
         </div>
-        <div>
-          <PartiesDocuments register={register} errors={errors} />
-        </div>
 
+        <div hidden={partie !== "document"}>
+          <PartiesDocuments
+            register={register}
+            errors={errors}
+            fieldArray={documentArray}
+            watch={watch}
+          />
+        </div>
         <input type="submit" />
       </form>
     </div>

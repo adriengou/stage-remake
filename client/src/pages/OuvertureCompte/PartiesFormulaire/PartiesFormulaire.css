@@ -1,0 +1,45 @@
+.field {
+  width: fit-content;
+}
+
+.field.text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.field.array {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.array-element {
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.array-element > .break {
+  width: 100%;
+}
+
+.tva {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin: 15px 0px;
+}

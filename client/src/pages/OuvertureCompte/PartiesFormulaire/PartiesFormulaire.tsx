@@ -1,11 +1,12 @@
 import React from "react";
 import { countryList } from "../../../../../common/data/countryList";
 import { currencyList } from "../../../../../common/data/currencyList";
+import "./PartiesFormulaire.css";
 
 export function PartiesSociete({ register, errors }: any) {
   return (
     <>
-      <div className="field">
+      <div className="field text">
         <label htmlFor="">Politesse</label>
         <select
           {...register("politesse", { required: true })}
@@ -16,7 +17,7 @@ export function PartiesSociete({ register, errors }: any) {
         </select>
       </div>
 
-      <div className="field">
+      <div className="field text">
         <label htmlFor="">Nom / Raison sociale</label>
         <input
           {...register("raison_sociale", { required: true })}
@@ -24,7 +25,7 @@ export function PartiesSociete({ register, errors }: any) {
         />
       </div>
 
-      <div className="field">
+      <div className="field text">
         <label htmlFor="">Prénom / Complément</label>
         <input
           {...register("complement", { required: false })}
@@ -138,7 +139,7 @@ export function PartiesSociete({ register, errors }: any) {
   );
 }
 
-export function PartiesBanque({ register, errors, formArray }: any) {
+export function PartiesBanque({ register, errors, fieldArray }: any) {
   return (
     <>
       <div className="field text">
@@ -212,12 +213,12 @@ export function PartiesBanque({ register, errors, formArray }: any) {
       </div>
 
       <div className="array field">
-        {formArray.fields.map((field: any, index: number) => (
+        {fieldArray.fields.map((field: any, index: number) => (
           <div key={field.id} className="array-element">
-            <button onClick={() => formArray.remove(index)}>
-              {" "}
+            <button type="button" onClick={() => fieldArray.remove(index)}>
               Supprimer relation bancaire
             </button>
+            <div className="break"></div>
             <div className="field text">
               <label>N° Compte</label>
               <input
@@ -259,7 +260,7 @@ export function PartiesBanque({ register, errors, formArray }: any) {
             </div>
           </div>
         ))}
-        <button onClick={() => formArray.append({ relation_bancaire: {} })}>
+        <button type="button" onClick={() => fieldArray.append()}>
           Ajouter relation bancaire
         </button>
       </div>
@@ -274,7 +275,7 @@ export function PartiesTva({ register, errors, watch }: any) {
   return (
     <>
       <div className="tva">
-        <div className="field">
+        <div className="field text">
           <label htmlFor="">TVA</label>
           <select
             {...register("soumis_tva", { required: true })}
@@ -295,30 +296,27 @@ export function PartiesTva({ register, errors, watch }: any) {
               />
             </div>
             <div className="field text">
-              <label htmlFor="">Taux Vente</label>
+              <label htmlFor="">Taux Vente (%)</label>
               <input
                 {...register("taux_vente", { required: true })}
                 aria-invalid={errors.taux_vente ? "true" : "false"}
               />
-              <span>%</span>
             </div>
 
             <div className="field text">
-              <label htmlFor="">Taux Achat</label>
+              <label htmlFor="">Taux Achat (%)</label>
               <input
                 {...register("taux_achat", { required: true })}
                 aria-invalid={errors.taux_achat ? "true" : "false"}
               />
-              <span>%</span>
             </div>
 
             <div className="field text">
-              <label htmlFor="">Taux Investissement</label>
+              <label htmlFor="">Taux Investissement (%)</label>
               <input
                 {...register("taux_investissement", { required: true })}
                 aria-invalid={errors.taux_investissement ? "true" : "false"}
               />
-              <span>%</span>
             </div>
           </>
         )}
@@ -327,16 +325,16 @@ export function PartiesTva({ register, errors, watch }: any) {
   );
 }
 
-export function PartiesUtilisateurs({ register, errors, formArray }: any) {
+export function PartiesUtilisateurs({ register, errors, fieldArray }: any) {
   return (
     <>
       <div className="array field">
-        {formArray.fields.map((field: any, index: number) => (
+        {fieldArray.fields.map((field: any, index: number) => (
           <div key={field.id} className="array-element">
-            <button onClick={() => formArray.remove(index)}>
-              {" "}
-              Supprimer utilisateur {index}
+            <button type="button" onClick={() => fieldArray.remove(index)}>
+              Supprimer utilisateur
             </button>
+            <div className="break"></div>
 
             <div className="field text">
               <label>Nom</label>
@@ -368,7 +366,7 @@ export function PartiesUtilisateurs({ register, errors, formArray }: any) {
             </div>
           </div>
         ))}
-        <button onClick={() => formArray.append({ relation_bancaire: {} })}>
+        <button type="button" onClick={() => fieldArray.append()}>
           Ajouter utilisateur
         </button>
       </div>
@@ -376,6 +374,38 @@ export function PartiesUtilisateurs({ register, errors, formArray }: any) {
   );
 }
 
-export function PartiesDocuments({ register, errors }: any) {
-  return <div>PartiesDocuments</div>;
+export function PartiesDocuments({ register, errors, fieldArray, watch }: any) {
+  const watchDocuments = watch("documents_join", []);
+
+  return (
+    <>
+      <div className="array field">
+        {fieldArray.fields.map((field: any, index: number) => (
+          <div key={field.id} className="array-element">
+            <button type="button" onClick={() => fieldArray.remove(index)}>
+              Supprimer document
+            </button>
+            <div className="break"></div>
+
+            <div className="field file">
+              <input type="file" {...register(`documents.${index}.file`)} />
+            </div>
+            <div className="field text">
+              <label>Note</label>
+
+              <textarea
+                rows={4}
+                cols={50}
+                {...register(`documents_joint.${index}.note`)}
+              />
+            </div>
+          </div>
+        ))}
+
+        <button type="button" onClick={() => fieldArray.append()}>
+          Ajouter document
+        </button>
+      </div>
+    </>
+  );
 }

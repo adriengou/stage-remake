@@ -4,13 +4,14 @@ import "./App.css";
 import OuvertureCompte from "./pages/OuvertureCompte/OuvertureCompte";
 
 const routes = {
-  "/ouverture": <OuvertureCompte />,
-  "/paramadresse": <></>,
+  ouverture: <OuvertureCompte />,
+  paramadresse: <></>,
 };
 
 function App() {
   const router = () => {
-    const pathname = window.location.pathname;
+    const pathname = window.location.pathname.split("/")[1];
+    console.log(pathname);
     return (
       routes[pathname as keyof typeof routes] || (
         <h1>ERROR 404: Page not found.</h1>
