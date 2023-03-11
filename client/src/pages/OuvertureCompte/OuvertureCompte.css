@@ -1,9 +1,9 @@
-input[aria-invalid="true"] {
+.page-ouverture input[aria-invalid="true"] {
   border: 2px solid red;
 }
 
-input,
-select {
+.page-ouverture input,
+.page-ouverture select {
   box-sizing: border-box;
   padding: 1px 2px;
   height: 30px;
@@ -12,12 +12,12 @@ select {
   border: 2px solid gray;
 }
 
-p[role="alert"] {
+.page-ouverture p[role="alert"] {
   color: red;
 }
 
-button,
-form > input[type="submit"] {
+.page-ouverture button,
+.page-ouverture form > input[type="submit"] {
   height: fit-content;
   width: 200px;
   height: 40px;
@@ -27,74 +27,35 @@ form > input[type="submit"] {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
 }
 
-form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  gap: 10px;
-  padding-bottom: 10px;
-  flex: 1 1;
-}
-
-form > div {
+.page-ouverture h1 {
   box-sizing: border-box;
-  flex: 1 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  overflow: auto;
-  padding: 10px;
-  border-bottom: 1px solid gray;
-}
-
-form > div[hidden] {
-  display: none;
-}
-
-form > input[type="submit"] {
-  align-self: flex-end;
-  margin-right: 10px;
-}
-
-.form-progress {
-  display: flex;
-  flex-direction: row;
-}
-
-.form-progress > div {
-  height: 50px;
-  border: 2px solid gray;
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
   position: relative;
-}
-
-.form-progress > div > p {
   margin: 0;
+  flex-basis: 60px;
+  line-height: 60px;
+  padding-left: 20px;
+  border-bottom: 2px solid rgb(151, 151, 151);
 }
 
-.form-progress > div > div {
-  position: absolute;
-  height: 5px;
-  background-color: lightgray;
-  width: 100%;
-  bottom: 0;
+.page-ouverture form {
+  padding-left: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 10px;
 }
 
-.form-progress > div > div.selected {
-  background-color: rgb(46, 136, 167);
+.page-ouverture form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.shown {
-  display: block;
+.page-ouverture form h2 {
+  padding-left: 1ch;
+  border-bottom: 2px solid lightgray;
+  width: 95%;
 }

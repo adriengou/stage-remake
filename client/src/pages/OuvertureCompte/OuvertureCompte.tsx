@@ -11,9 +11,6 @@ import "./OuvertureCompte.css";
 import { useState } from "react";
 
 export default function OuvertureCompte() {
-  const path = window.location.pathname;
-  const [partie, setPartie] = useState("societe");
-
   const {
     control,
     register,
@@ -43,42 +40,30 @@ export default function OuvertureCompte() {
 
   return (
     <div className="page-ouverture">
-      <div className="form-progress">
-        {["societe", "banque", "tva", "utilisateur", "document"].map(
-          (elem: string, index: number) => (
-            <div key={index} onClick={() => setPartie(elem)}>
-              <p>{elem.toUpperCase()}</p>
-              <div className={partie == elem ? "selected" : ""}></div>
-            </div>
-          )
-        )}
-      </div>
+      <h1>Ouverture de compte</h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div hidden={partie !== "societe"}>
+        <div>
           <PartiesSociete register={register} errors={errors} />
         </div>
-
-        <div hidden={partie !== "banque"}>
+        <div>
           <PartiesBanque
             register={register}
             errors={errors}
             fieldArray={banqueArray}
           />
         </div>
-
-        <div hidden={partie !== "tva"}>
+        <div>
           <PartiesTva register={register} errors={errors} watch={watch} />
         </div>
-
-        <div hidden={partie !== "utilisateur"}>
+        <div>
           <PartiesUtilisateurs
             register={register}
             errors={errors}
             fieldArray={utilisateurArray}
           />
         </div>
-
-        <div hidden={partie !== "document"}>
+        <div>
           <PartiesDocuments
             register={register}
             errors={errors}
@@ -86,6 +71,7 @@ export default function OuvertureCompte() {
             watch={watch}
           />
         </div>
+
         <input type="submit" />
       </form>
     </div>

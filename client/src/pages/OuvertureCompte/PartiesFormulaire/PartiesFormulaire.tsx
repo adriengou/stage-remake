@@ -6,6 +6,7 @@ import "./PartiesFormulaire.css";
 export function PartiesSociete({ register, errors }: any) {
   return (
     <>
+      <h2>Société</h2>
       <div className="field text">
         <label htmlFor="">Politesse</label>
         <select
@@ -142,6 +143,7 @@ export function PartiesSociete({ register, errors }: any) {
 export function PartiesBanque({ register, errors, fieldArray }: any) {
   return (
     <>
+      <h2>Banque</h2>
       <div className="field text">
         <label htmlFor="">BIC / Swift</label>
         <input
@@ -274,6 +276,7 @@ export function PartiesTva({ register, errors, watch }: any) {
 
   return (
     <>
+      <h2>TVA</h2>
       <div className="tva">
         <div className="field text">
           <label htmlFor="">TVA</label>
@@ -328,6 +331,7 @@ export function PartiesTva({ register, errors, watch }: any) {
 export function PartiesUtilisateurs({ register, errors, fieldArray }: any) {
   return (
     <>
+      <h2>Utilisateurs</h2>
       <div className="array field">
         {fieldArray.fields.map((field: any, index: number) => (
           <div key={field.id} className="array-element">
@@ -379,6 +383,7 @@ export function PartiesDocuments({ register, errors, fieldArray, watch }: any) {
 
   return (
     <>
+      <h2>Documents joints</h2>
       <div className="array field">
         {fieldArray.fields.map((field: any, index: number) => (
           <div key={field.id} className="array-element">
