@@ -6,10 +6,14 @@
 .page-ouverture select {
   box-sizing: border-box;
   padding: 1px 2px;
-  height: 30px;
+  height: 25px;
   padding: 0px 5px;
   outline: none;
   border: 2px solid gray;
+}
+
+.page-ouverture label {
+  font-size: 1rem;
 }
 
 .page-ouverture p[role="alert"] {
@@ -40,11 +44,12 @@
 }
 
 .page-ouverture form {
+  margin-top: 25px;
   padding-left: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 5px;
   padding-bottom: 10px;
 }
 
@@ -52,10 +57,19 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-bottom: 20px;
 }
 
 .page-ouverture form h2 {
-  padding-left: 1ch;
-  border-bottom: 2px solid lightgray;
   width: 95%;
+  margin: 0;
+}
+
+.page-ouverture .line {
+  height: 2px;
+  background-color: lightgray;
+  padding: 0;
+}
+
+.page-ouverture button {
 }

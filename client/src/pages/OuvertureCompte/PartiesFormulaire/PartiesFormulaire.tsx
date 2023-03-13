@@ -393,7 +393,7 @@ export function PartiesDocuments({ register, errors, fieldArray, watch }: any) {
             <div className="break"></div>
 
             <div className="field file">
-              <input type="file" {...register(`documents.${index}.file`)} />
+              <input type="file" {...register(`documents.${index}`)} />
             </div>
             <div className="field text">
               <label>Note</label>

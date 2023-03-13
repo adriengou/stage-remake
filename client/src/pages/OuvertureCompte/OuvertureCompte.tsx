@@ -9,6 +9,7 @@ import {
 
 import "./OuvertureCompte.css";
 import { useState } from "react";
+import { HOST, PORT } from "../../../../common/environment";
 
 export default function OuvertureCompte() {
   const {
@@ -34,8 +35,44 @@ export default function OuvertureCompte() {
     name: "documents_joint",
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data, errors);
+  const onSubmit = async (data: any, event: any) => {
+    const formData = new FormData();
+    const fileList = data.documents.map((elem: any) => {
+      return elem[0];
+    });
+    fileList.forEach((doc: any, index: number) => {
+      formData.append("file", doc);
+    });
+
+    console.log(fileList);
+
+    //send data
+    const uploadRes = await fetch(`${HOST}:${PORT}/ouverture/upload`, {
+      method: "POST",
+      body: formData,
+      // headers: {
+      //   "Content-Type": "multipart/form-data",
+      // },
+    });
+
+    const fileNames = await uploadRes.json();
+
+    data.documents_joint = data.documents_joint.map(
+      (doc: any, index: number) => {
+        return {
+          ...doc,
+          name: fileNames[index],
+        };
+      }
+    );
+
+    const res = await fetch(`${HOST}:${PORT}/ouverture`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (
@@ -46,6 +83,9 @@ export default function OuvertureCompte() {
         <div>
           <PartiesSociete register={register} errors={errors} />
         </div>
+
+        <div className="line"></div>
+
         <div>
           <PartiesBanque
             register={register}
@@ -53,9 +93,15 @@ export default function OuvertureCompte() {
             fieldArray={banqueArray}
           />
         </div>
+
+        <div className="line"></div>
+
         <div>
           <PartiesTva register={register} errors={errors} watch={watch} />
         </div>
+
+        <div className="line"></div>
+
         <div>
           <PartiesUtilisateurs
             register={register}
@@ -63,6 +109,9 @@ export default function OuvertureCompte() {
             fieldArray={utilisateurArray}
           />
         </div>
+
+        <div className="line"></div>
+
         <div>
           <PartiesDocuments
             register={register}
@@ -72,7 +121,12 @@ export default function OuvertureCompte() {
           />
         </div>
 
-        <input type="submit" />
+        <div className="line"></div>
+
+        <div className="actions">
+          <button type="submit">Envoyer</button>
+          <button type="button">Exporter</button>
+        </div>
       </form>
     </div>
   );
