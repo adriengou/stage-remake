@@ -2,10 +2,13 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import OuvertureCompte from "./pages/OuvertureCompte/OuvertureCompte";
+import OutlookAuth from "./pages/OutlookAuth/OutlookAuth";
 
 const routes = {
   ouverture: <OuvertureCompte />,
   paramadresse: <></>,
+  outlook: <OutlookAuth />,
+  redirect: <></>,
 };
 
 function App() {

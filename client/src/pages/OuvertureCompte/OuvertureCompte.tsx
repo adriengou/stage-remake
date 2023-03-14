@@ -75,6 +75,18 @@ export default function OuvertureCompte() {
     });
   };
 
+  const exportData = (data: any) => {
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(data)
+    )}`;
+
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "data.json";
+
+    link.click();
+  };
+
   return (
     <div className="page-ouverture">
       <h1>Ouverture de compte</h1>
@@ -125,7 +137,9 @@ export default function OuvertureCompte() {
 
         <div className="actions">
           <button type="submit">Envoyer</button>
-          <button type="button">Exporter</button>
+          <button type="button" onClick={handleSubmit(exportData)}>
+            Exporter
+          </button>
         </div>
       </form>
     </div>

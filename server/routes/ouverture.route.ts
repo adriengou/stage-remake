@@ -1,4 +1,5 @@
 import { Router } from "express";
+import ouvertureController from "../controllers/ouverture.controller";
 import upload from "../middlewares/multer.middleware";
 
 const router = Router();
@@ -16,12 +17,14 @@ router.post("/upload", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  try {
-    console.log(req.body);
-  } catch (error) {}
+  const data = req.body;
+  const [result, error] = await ouvertureController.create(data);
 
-  console.log("ok");
-  res.send("ok");
+  if (!result) {
+    res.status(400).send(error);
+    return;
+  }
+  res.status(200).send("OK");
 });
 
 export default router;
