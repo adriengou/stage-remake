@@ -9,7 +9,7 @@ router.post("/upload", async (req, res) => {
       return res.status(400);
     }
 
-    const files = req.files! as Express.Multer.File[];
+    const files = req.files as Express.Multer.File[];
     const fileNames = files.map((file: any) => file.filename);
 
     return res.status(200).json(fileNames);

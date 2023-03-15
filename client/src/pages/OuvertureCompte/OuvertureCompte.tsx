@@ -1,4 +1,4 @@
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form"; // importation du hook
 import {
   PartiesBanque,
   PartiesDocuments,
@@ -12,6 +12,7 @@ import { useState } from "react";
 import { HOST, PORT } from "../../../../common/environment";
 
 export default function OuvertureCompte() {
+  // initialisation du formulaire
   const {
     control,
     register,
