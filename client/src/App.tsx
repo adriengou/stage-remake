@@ -3,10 +3,11 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import OuvertureCompte from "./pages/OuvertureCompte/OuvertureCompte";
 import OutlookAuth from "./pages/OutlookAuth/OutlookAuth";
+import Impression from "./pages/Impression/Impression";
 
 const routes = {
   ouverture: <OuvertureCompte />,
-  paramadresse: <></>,
+  impression: <Impression />,
   outlook: <OutlookAuth />,
   redirect: <></>,
 };

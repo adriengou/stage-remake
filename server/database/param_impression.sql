@@ -22,4 +22,14 @@ VALUES (
         15
     );
 
-UPDATE 
+UPDATE param_impression
+SET
+    nom = 'testupdate',
+    taille_police = 4,
+    alignement = 'droite'
+WHERE id = 1
+RETURNING *;
+
+SELECT * FROM param_impression ;
+
+DELETE FROM param_impression WHERE distance_haut = 10;
