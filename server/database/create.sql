@@ -1,4 +1,4 @@
--- Active: 1678783217472@@127.0.0.1@5433@stage
+-- Active: 1678902448804@@db.jrpyzidxeavdwncrcsnt.supabase.co@5432@postgres
 
 CREATE TABLE
     IF NOT EXISTS ouverture (

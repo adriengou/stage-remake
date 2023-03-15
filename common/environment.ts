@@ -1,11 +1,11 @@
 export const HOST = "http://127.0.0.1";
 export const PORT = 8888;
 export const DB_CONNECTION = {
-  host: "127.0.0.1",
-  port: 5433,
+  host: "db.jrpyzidxeavdwncrcsnt.supabase.co",
+  port: 5432,
   user: "postgres",
-  password: "admin",
-  database: "stage",
+  password: "$nem4BF7z4B3M&Dd",
+  database: "postgres",
 };
 
 export const MICROSOFT_GRAPH = {

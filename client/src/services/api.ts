@@ -26,6 +26,8 @@ export const paramImpressionService = {
 
   create: (data: any) => request("/paramimpression", "POST", data),
 
+  getByadresse: (id: number) => request("/paramimpression/" + id, "GET"),
+
   update: (id: number, data: any) =>
     request("/paramimpression/" + id, "PUT", data),
 
@@ -40,4 +42,17 @@ export const typeAdresseService = {
   update: (id: number, data: any) => request("/typeadresse/" + id, "PUT", data),
 
   delete: (id: number) => request("/typeadresse/" + id, "DELETE"),
+};
+
+export const adresseImpressionService = {
+  list: () => request("/adresseimpression", "GET"),
+
+  getByadresse: (id: number) => request("/adresseimpression/" + id, "GET"),
+
+  create: (data: any) => request("/adresseimpression", "POST", data),
+
+  update: (id: number, data: any) =>
+    request("/adresseimpression/" + id, "PUT", data),
+
+  delete: (id: number) => request("/adresseimpression/" + id, "DELETE"),
 };

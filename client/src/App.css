@@ -3,4 +3,12 @@ html,
 #root {
   margin: 0;
   height: 100%;
+  width: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
 }
