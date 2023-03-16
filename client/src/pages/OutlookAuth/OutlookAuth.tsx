@@ -1,11 +1,8 @@
 import React from "react";
-import OutlookAuthButton from "../../components/OutlookAuthButton/OutlookAuthButton";
-import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
-import { msalConfig } from "../../services/microsoftGraphAuth";
+import { msalInstance } from "../../services/microsoftGraphAuth";
+import OutlookAuthButton from "../../components/OutlookAuthButton/OutlookAuthButton";
 import OutlookViewer from "../../components/OutlookViewer/OutlookViewer";
-
-const msalInstance = new PublicClientApplication(msalConfig);
 
 export default function OutlookAuth() {
   const [accessToken, setAccessToken] = React.useState("");

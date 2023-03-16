@@ -1,7 +1,6 @@
 import React from "react";
 import "./OutlookAuthButton.css";
 import { loginRequest } from "../../services/microsoftGraphAuth";
-import { PopupRequest } from "@azure/msal-browser/dist/request/PopupRequest";
 import { useMsal } from "@azure/msal-react/";
 
 export default function OutlookAuthButton(props: any) {
