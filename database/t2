@@ -1,6 +1,0 @@
-numero_compte[VARCHAR(50)],
-cle_rib[VARCHAR(50)],
-iban[VARCHAR(50)],
-devise[VARCHAR(50)],
-qr_iban[VARCHAR(50)],
-partie_bancaire[VARCHAR(50)],
