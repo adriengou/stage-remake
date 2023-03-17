@@ -12,6 +12,7 @@ const app = express();
 //express middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(cors());
 
 //debug middleware
@@ -31,7 +32,9 @@ app.use((req, res, next) => {
 });
 
 //api routers
+
 app.use("/ouverture", ouvertureRouter);
+
 app.use("/paramimpression", paramImpresssionRouter);
 app.use("/typeadresse", typeAdresseRouter);
 app.use("/adresseimpression", adresseImpressionRouter);
